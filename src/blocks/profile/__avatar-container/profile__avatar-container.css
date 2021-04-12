@@ -1,0 +1,5 @@
+.profile__avatar-container {
+    min-height: 120px;
+    min-width: 120px;
+    position: relative;
+  }

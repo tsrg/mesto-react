@@ -1,0 +1,5 @@
+.element__likes {
+    margin-right: 21px;
+    display: flex;
+flex-direction: column;
+}
