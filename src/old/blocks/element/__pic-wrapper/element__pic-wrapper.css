@@ -1,0 +1,34 @@
+.element__pic-wrapper {
+  max-width: 282px;
+  max-height: 282px;
+  width: 100%;
+  height: calc(100vw/3 - 17px);
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+}
+
+@media all and (max-width:920px) {
+
+  .element__pic-wrapper {
+    height: calc((100vw - 34px - 34px)/3);
+  }
+  }
+
+@media all and (max-width:683px) {
+
+  .element__pic-wrapper {
+    height: calc((100vw - 34px - 17px)/2);
+    max-width: 332px;
+    max-height: 332px;
+  }
+}
+
+@media all and (max-width:500px) {
+
+  .element__pic-wrapper {
+    height: calc(100vw - 34px);
+    max-width: 466px;
+    max-height: 466px;
+  }
+}

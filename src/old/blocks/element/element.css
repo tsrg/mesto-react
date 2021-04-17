@@ -1,0 +1,33 @@
+.element {
+  max-width: 282px;
+  width: calc(100vw/3 - 17px);
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 3px;
+  display: grid;
+  padding-bottom: 22px;
+  position: relative;
+}
+
+@media all and (max-width:920px) {
+
+.element {
+  width: calc((100vw - 34px - 34px)/3);
+}
+}
+
+@media all and (max-width:683px) {
+
+  .element {
+    width: 100%;
+    max-width: 332px;
+  }
+}
+
+@media all and (max-width:500px) {
+
+  .element {
+    max-width: 466px;
+  }
+}

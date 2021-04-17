@@ -1,0 +1,18 @@
+.popup__form {
+  background-color: white;
+  border-radius: 10px;
+  margin: auto;
+  width: calc(430px - 72px);
+  padding: 36px;
+  position: relative;
+  z-index: 15;
+}
+
+@media all and (max-width:530px) {
+
+  .popup__form {
+    width: 70%;
+    min-width: 240px;
+    padding: 20px;
+    }
+}
