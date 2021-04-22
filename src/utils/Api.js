@@ -1,3 +1,15 @@
+const apiSettings = {
+	token: 'd3c067e5-dfe9-4c66-9aca-7fc30c1afb49',
+	groupId: 'cohort-21',
+	url: 'https://mesto.nomoreparties.co/v1/',
+	cardsUrl: 'https://mesto.nomoreparties.co/v1/cohort-21/cards',
+	cardsLikeUrl: 'https://mesto.nomoreparties.co/v1/cohort-21/cards/likes',
+	userUrl: 'https://mesto.nomoreparties.co/v1/cohort-21/users/me',
+	updateAvatarUrl: 'https://mesto.nomoreparties.co/v1/cohort-21/users/me/avatar'
+  };
+
+//import apiSettings from './constants'
+
 const handleOriginalResponse = (res) => {
 	if (!res.ok) {
 		return Promise.reject(`Error: ${res.status}`);
@@ -5,7 +17,7 @@ const handleOriginalResponse = (res) => {
 	return res.json();
 };
 
-export default class Api {
+class Api {
 	constructor(apiSettings) {
 		this.apiSettings = apiSettings;
 	}
@@ -126,3 +138,6 @@ export default class Api {
 			});
 	}
 }
+
+const api = new Api(apiSettings);
+export default api;

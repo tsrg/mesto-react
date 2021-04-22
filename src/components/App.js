@@ -14,40 +14,47 @@ function App() {
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState([]);
 
-
+console.log(selectedCard);
  // let isEditProfilePopupOpen = state;
   //let isEditAvatarPopupOpen = state;
   //let isAddPlacePopupOpen = state;
   
 
-  function handleEditAvatarClick () {
+  function handleEditAvatarClick() {
     setEditAvatarPopupOpen(true);
   }
-  function handleEditProfileClick () {
+  function handleEditProfileClick() {
     setEditProfilePopupOpen(true);
   }
-  function handleAddPlaceClick () {
+  function handleAddPlaceClick() {
     setAddPlacePopupOpen(true);
   }
-  function closeAllPopups () {
+  function closeAllPopups() {
     setEditAvatarPopupOpen(false);
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
+  }
+  function handleCardClick(card) {
+    //console.log(card);
+    const data = true;
+    setSelectedCard([card, data]);
+    console.log(selectedCard);
   }
 
   return (
     <div className="page">
       <Header />
-      <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick}/>
+      <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick}/>
 
       <PopupWithForm name="author" title="Редактировать профиль" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
         <label className="popup__field">
-          <input type="text" required name="authorName" placeholder="Имя" className="popup__input popup__input_type_name" id="authorName" minlength="2" maxlength="40" />
+          <input type="text" required name="authorName" placeholder="Имя" className="popup__input popup__input_type_name" id="authorName" minLength="2" maxLength="40" />
           <span className="popup__input-warning popup__input-warning_type_authorName"></span>
         </label>
         <label className="popup__field">
-          <input type="text" required name="athorDescription" placeholder="Описание" className="popup__input popup__input_type_description" minlength="2" maxlength="200" />
+          <input type="text" required name="athorDescription" placeholder="Описание" className="popup__input popup__input_type_description" minLength="2" maxLength="200" />
           <span className="popup__input-warning popup__input-warning_type_athorDescription"></span>
         </label>
         <input type="submit" className="popup__submit-btn" value="Сохранить" />
@@ -63,7 +70,7 @@ function App() {
 
       <PopupWithForm name="add-place" title="Новое место" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
         <label className="popup__field">
-          <input type="text" required name="place-name" placeholder="Название" className="popup__input popup__input_type_place-name" minlength="2" maxlength="30" />
+          <input type="text" required name="place-name" placeholder="Название" className="popup__input popup__input_type_place-name" minLength="2" maxLength="30" />
           <span className="popup__input-warning popup__input-warning_type_place-name"></span>
         </label>
         <label className="popup__field">
@@ -77,27 +84,15 @@ function App() {
         <input type="submit" className="popup__submit-btn" value="Да" />
       </PopupWithForm>
 
-      <ImgPopUp />
+      <ImgPopUp card={selectedCard} onClose="null">
 
-      <template id="cards-tempalte">
-        <article className="element">
-          <div className="element__pic-wrapper">
-            <img className="element__picture" src="img" alt="pic" />
-          </div>
-          <div className="element__title-container">
-            <h2 className="element__title"></h2>
-            <div className="element__likes">
-              <button className="element__like-btn" type="button"></button>
-              <span className="element__like-counter">0</span>
-            </div>
-          </div>
-          <button className="element__remove-btn" type="button"></button>
-        </article>
-      </template>
+      </ImgPopUp>
+
 
       <Footer />
     </div>
   );
 }
+
 
 export default App;
