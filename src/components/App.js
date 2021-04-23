@@ -2,7 +2,7 @@ import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
-import ImgPopUp from './ImgPopUp';
+import ImagePopup from './ImagePopup';
 import React, { useState } from 'react';
 
 function App() {
@@ -76,9 +76,7 @@ function App() {
         <input type="submit" className="popup__submit-btn" value="Да" />
       </PopupWithForm>
 
-      <ImgPopUp card={selectedCard} onClose={closeAllPopups}>
-      </ImgPopUp>
-
+      <ImagePopup card={selectedCard} onClose={closeAllPopups} />
 
       <Footer />
     </>

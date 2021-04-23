@@ -1,4 +1,4 @@
-function ImgPopUp(props) {
+function ImagePopup(props) {
 
     return (
         <section className={"popup popup_type_img-popup " + (props.card.isOpen ? 'popup_opened' : '')}>
@@ -12,4 +12,4 @@ function ImgPopUp(props) {
     )
 }
 
-export default ImgPopUp;
+export default ImagePopup;
