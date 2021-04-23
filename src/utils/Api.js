@@ -29,9 +29,6 @@ class Api {
 			},
 		})
 			.then(handleOriginalResponse)
-			.catch((err) => {
-				console.log(`Загрузка карточек. Ошибка: ${err}`);
-			});
 	}
 
 	addNewCard(name, link) {
@@ -47,9 +44,6 @@ class Api {
 			}),
 		})
 			.then(handleOriginalResponse)
-			.catch((err) => {
-				console.log(`Добавление карточки. Ошибка: ${err}`);
-			});
 	}
 
 	getUserInfo() {
@@ -59,9 +53,6 @@ class Api {
 			},
 		})
 			.then(handleOriginalResponse)
-			.catch((err) => {
-				console.log(`Загрузка информации о пользователе. Ошибка: ${err}`);
-			});
 	}
 
 	sendUserInfo(name, info) {
@@ -77,9 +68,6 @@ class Api {
 			}),
 		})
 			.then(handleOriginalResponse)
-			.catch((err) => {
-				console.log(`Сохранение информации о пользователе. Ошибка: ${err}`);
-			});
 	}
 
 	removeCard(cardId) {
@@ -90,9 +78,6 @@ class Api {
 			},
 		})
 			.then(handleOriginalResponse)
-			.catch((err) => {
-				console.log(`Удаление карточки. Ошибка: ${err}`);
-			});
 	}
 
 	addLike(cardId) {
@@ -103,9 +88,6 @@ class Api {
 			},
 		})
 			.then(handleOriginalResponse)
-			.catch((err) => {
-				console.log(`Добавление лайка. Ошибка: ${err}`);
-			});
 	}
 
 	removeLike(cardId) {
@@ -116,9 +98,6 @@ class Api {
 			},
 		})
 			.then(handleOriginalResponse)
-			.catch((err) => {
-				console.log(`Удаление лайка. Ошибка: ${err}`);
-			});
 	}
 
 	updateAvatar(url) {
@@ -133,9 +112,6 @@ class Api {
 			}),
 		})
 			.then(handleOriginalResponse)
-			.catch((err) => {
-				console.log(`Обновление аватара. Ошибка: ${err}`);
-			});
 	}
 }
 

@@ -1,5 +1,5 @@
 function ImagePopup(props) {
-
+    if (props.card !== null) {
     return (
         <section className={"popup popup_type_img-popup " + (props.card.isOpen ? 'popup_opened' : '')}>
         <div className="popup__container">
@@ -10,6 +10,12 @@ function ImagePopup(props) {
         <div className="popup__overlay"></div>
         </section>
     )
+    }
+    else {
+        return (
+            <section className="popup popup_type_img-popup"></section>
+        )
+    }
 }
 
 export default ImagePopup;
