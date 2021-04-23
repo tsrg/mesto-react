@@ -5,22 +5,12 @@ import PopupWithForm from './PopupWithForm';
 import ImgPopUp from './ImgPopUp';
 import React, { useState } from 'react';
 
-
-
-
-
 function App() {
 
-  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
-  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
-  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState([]);
-
-console.log(selectedCard);
- // let isEditProfilePopupOpen = state;
-  //let isEditAvatarPopupOpen = state;
-  //let isAddPlacePopupOpen = state;
-  
+  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState([]);
 
   function handleEditAvatarClick() {
     setEditAvatarPopupOpen(true);
@@ -35,16 +25,18 @@ console.log(selectedCard);
     setEditAvatarPopupOpen(false);
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
+    setSelectedCard([]);
   }
   function handleCardClick(card) {
-    //console.log(card);
-    const data = true;
-    setSelectedCard([card, data]);
-    console.log(selectedCard);
+    const data = [];
+    data.link = card.link;
+    data.name = card.name;
+    data.isOpen = true;
+    setSelectedCard(data);
   }
 
   return (
-    <div className="page">
+    <>
       <Header />
       <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick}/>
 
@@ -84,13 +76,12 @@ console.log(selectedCard);
         <input type="submit" className="popup__submit-btn" value="Да" />
       </PopupWithForm>
 
-      <ImgPopUp card={selectedCard} onClose="null">
-
+      <ImgPopUp card={selectedCard} onClose={closeAllPopups}>
       </ImgPopUp>
 
 
       <Footer />
-    </div>
+    </>
   );
 }
 

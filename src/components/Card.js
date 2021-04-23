@@ -2,21 +2,21 @@ function Card(props) {
 
     function handleClick() {
         props.onCardClick(props.card);
-      }
+    }
 
     return (
-        <article id={props.id} class="element">
-            <div class="element__pic-wrapper" onClick={handleClick}>
-                <img class="element__picture" src={props.link} alt="pic" />
+        <article id={props.id} className="element">
+            <div className="element__pic-wrapper" onClick={handleClick}>
+                <img className="element__picture" src={props.link} alt="pic" />
             </div>
-            <div class="element__title-container">
-                <h2 class="element__title">{props.name}</h2>
-                <div class="element__likes">
-                    <button class="element__like-btn" type="button"></button>
-                    <span class="element__like-counter">{props.likes.length}</span>
+            <div className="element__title-container">
+                <h2 className="element__title">{props.name}</h2>
+                <div className="element__likes">
+                    <button className="element__like-btn" type="button"></button>
+                    <span className="element__like-counter">{props.likes.length}</span>
                 </div>
             </div>
-            <button class="element__remove-btn" type="button"></button>
+            <button className="element__remove-btn" type="button"></button>
         </article>)
 }
 export default Card;

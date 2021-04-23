@@ -1,6 +1,0 @@
-.popup__picture {
-    height: calc(100vh - 180px);
-    margin-top: 90px;
-    position: relative;
-    z-index: 21;
-}

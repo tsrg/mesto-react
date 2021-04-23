@@ -1,6 +1,6 @@
 .popup__picture {
-    height: calc(100vh - 180px);
-    margin-top: 90px;
+    max-height: calc(100vh - 180px);
+    max-width: 100%;
     position: relative;
     z-index: 21;
 }

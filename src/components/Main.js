@@ -60,7 +60,7 @@ function Main(props) {
         <section className="elements">
             {
             cards.map(card => {
-                return  <Card card={card} id={card._id} link={card.link} name={card.name} likes={card.likes} onCardClick={props.onCardClick}/>;
+                return  <Card key={card._id} card={card} id={card._id} link={card.link} name={card.name} likes={card.likes} onCardClick={props.onCardClick}/>;
         })
         }
 
