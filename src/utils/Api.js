@@ -80,6 +80,27 @@ class Api {
 			.then(handleOriginalResponse)
 	}
 
+	changeLikeCardStatus(cardId, isLiked) {
+		if (isLiked) {
+			return fetch(`${this.apiSettings.cardsLikeUrl}/${cardId}`, {
+				method: "PUT",
+				headers: {
+					authorization: this.apiSettings.token,
+				},
+			})
+				.then(handleOriginalResponse)
+		}
+		else {
+			return fetch(`${this.apiSettings.cardsLikeUrl}/${cardId}`, {
+				method: "DELETE",
+				headers: {
+					authorization: this.apiSettings.token,
+				},
+			})
+				.then(handleOriginalResponse)
+		}
+	}
+
 	addLike(cardId) {
 		return fetch(`${this.apiSettings.cardsLikeUrl}/${cardId}`, {
 			method: "PUT",
