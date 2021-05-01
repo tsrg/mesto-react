@@ -55,17 +55,17 @@ class Api {
 			.then(handleOriginalResponse)
 	}
 
-	sendUserInfo(name, info) {
+	sendUserInfo(data) {
+		console.log(data);
 		return fetch(this.apiSettings.userUrl, {
 			method: "PATCH",
 			headers: {
 				authorization: this.apiSettings.token,
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify({
-				name: name,
-				about: info,
-			}),
+			body: JSON.stringify(
+				data
+			),
 		})
 			.then(handleOriginalResponse)
 	}
@@ -128,9 +128,9 @@ class Api {
 				authorization: this.apiSettings.token,
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify({
-				avatar: url,
-			}),
+			body: JSON.stringify(
+				url,
+			),
 		})
 			.then(handleOriginalResponse)
 	}

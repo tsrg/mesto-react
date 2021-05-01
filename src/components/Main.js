@@ -10,7 +10,6 @@ function Main(props) {
     function handleCardLike(card) {
         // Снова проверяем, есть ли уже лайк на этой карточке
         const isLiked = card.likes.some(i => i._id === currentUser._id);
-        console.log(card);
 
         // Отправляем запрос в API и получаем обновлённые данные карточки
         api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
@@ -20,6 +19,9 @@ function Main(props) {
 
     function handleCardDelete(card) {
         api.removeCard(card._id)
+        .then((response) => {
+            addCards(cards.filter((item) => {return !(item._id === response._id)}))
+        })
         .catch((err) => {
             console.log(`Ошибка удаления каточки:: ${err}`);
         });
@@ -39,11 +41,11 @@ function Main(props) {
         <section className="profile">
             <div className="profile__avatar-container">
             <img className="profile__avatar"  src={currentUser.avatar} alt="Аватар" />
-            <button className="profile__avatar-edit" onClick={props.onEditProfile}></button>
+            <button className="profile__avatar-edit" onClick={props.onEditAvatar}></button>
             </div>
             <div className="profile__info">
                 <h1 className="profile__title">{currentUser.name}</h1>
-                <button className="profile__edit-button" type="button" onClick={props.onEditAvatar}></button>
+                <button className="profile__edit-button" type="button" onClick={props.onEditProfile}></button>
                 <p className="profile__subtitle">{currentUser.about}</p>
             </div>
             <button className="profile__add-button" type="button" onClick={props.onAddPlace}></button>
@@ -51,7 +53,8 @@ function Main(props) {
         <section className="elements">
             {
             cards.map(card => {
-                return  <Card key={card._id} card={card} id={card._id} link={card.link} name={card.name} likes={card.likes} onCardClick={props.onCardClick} onCardLike={handleCardLike}/>;
+                return  <Card key={card._id} card={card} id={card._id} link={card.link} name={card.name}
+                                likes={card.likes} onCardClick={props.onCardClick} onCardLike={handleCardLike} onCardDelete={handleCardDelete}/>;
         })
         }
 

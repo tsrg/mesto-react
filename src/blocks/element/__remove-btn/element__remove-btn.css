@@ -14,3 +14,11 @@
 .element__remove-btn:hover {
     opacity: 0.5;
 }
+
+.element__remove-btn_hidden {
+    display: none;
+}
+
+.element__remove-btn_visible {
+    display: block;
+}
