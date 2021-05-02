@@ -1,41 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import api from '../utils/Api';
+import React from 'react';
 import Card from '../components/Card';
-import { CurrentUserContext } from './CurrentUserContext';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function Main(props) {
-    const [cards, addCards] = useState([]);
     const currentUser = React.useContext(CurrentUserContext);
 
-    function handleCardLike(card) {
-        // Снова проверяем, есть ли уже лайк на этой карточке
-        const isLiked = card.likes.some(i => i._id === currentUser._id);
-
-        // Отправляем запрос в API и получаем обновлённые данные карточки
-        api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-            addCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-        });
-    }
-
-    function handleCardDelete(card) {
-        api.removeCard(card._id)
-        .then((response) => {
-            addCards(cards.filter((item) => {return !(item._id === response._id)}))
-        })
-        .catch((err) => {
-            console.log(`Ошибка удаления каточки:: ${err}`);
-        });
-    }
-
-    useEffect(() => {
-        api.getCards()
-        .then((gCards) => {
-            addCards(gCards);
-        })
-        .catch((err) => {
-            console.log(`Ошибка загрузки данных: ${err}`);
-        });
-    }, [])
     return (
         <main>
         <section className="profile">
@@ -52,9 +21,10 @@ function Main(props) {
         </section>
         <section className="elements">
             {
-            cards.map(card => {
+            props.cards.map(card => {
                 return  <Card key={card._id} card={card} id={card._id} link={card.link} name={card.name}
-                                likes={card.likes} onCardClick={props.onCardClick} onCardLike={handleCardLike} onCardDelete={handleCardDelete}/>;
+                                likes={card.likes} onCardClick={props.onCardClick} onCardLike={props.onCardLike} 
+                                onCardDelete={props.onCardDelete} />;
         })
         }
 

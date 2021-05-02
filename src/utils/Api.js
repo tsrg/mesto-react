@@ -31,17 +31,14 @@ class Api {
 			.then(handleOriginalResponse)
 	}
 
-	addNewCard(name, link) {
+	addNewCard(newCard) {
 		return fetch(this.apiSettings.cardsUrl, {
 			method: "POST",
 			headers: {
 				authorization: this.apiSettings.token,
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify({
-				name: name,
-				link: link,
-			}),
+			body: JSON.stringify(newCard),
 		})
 			.then(handleOriginalResponse)
 	}
@@ -56,7 +53,6 @@ class Api {
 	}
 
 	sendUserInfo(data) {
-		console.log(data);
 		return fetch(this.apiSettings.userUrl, {
 			method: "PATCH",
 			headers: {
