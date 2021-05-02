@@ -20,13 +20,13 @@ function Main(props) {
             <button className="profile__add-button" type="button" onClick={props.onAddPlace}></button>
         </section>
         <section className="elements">
-            {
-            props.cards.map(card => {
+            { (props.cards.length > 0) &&
+            (props.cards.map(card => {
                 return  <Card key={card._id} card={card} id={card._id} link={card.link} name={card.name}
-                                likes={card.likes} onCardClick={props.onCardClick} onCardLike={props.onCardLike} 
+                                likes={card.likes} onCardClick={props.onCardClick} onCardLike={props.onCardLike}
                                 onCardDelete={props.onCardDelete} />;
-        })
-        }
+        }))
+    }
 
         </section>
         </main>

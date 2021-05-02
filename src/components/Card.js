@@ -28,7 +28,7 @@ function Card(props) {
     return (
         <article id={props.id} className="element">
             <div className="element__pic-wrapper" onClick={handleClick}>
-                <img className="element__picture" src={props.link} alt="pic" />
+                <img className="element__picture" src={props.link} alt={props.name} />
             </div>
             <div className="element__title-container">
                 <h2 className="element__title">{props.name}</h2>

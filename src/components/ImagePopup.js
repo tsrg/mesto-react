@@ -1,7 +1,7 @@
 function ImagePopup(props) {
     if (props.card !== null) {
     return (
-        <section className={"popup popup_type_img-popup " + (props.card.isOpen ? 'popup_opened' : '')}>
+        <section className={`popup popup_type_img-popup ${props.card.isOpen && 'popup_opened'}`}>
         <div className="popup__container">
             <img className="popup__picture" src={props.card.link} alt="img" />
             <h2 className="popup__img-title">{props.card.name}</h2>

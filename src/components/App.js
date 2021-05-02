@@ -12,15 +12,15 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 
 function App() {
 
-  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
-  const [currentUser, setCurrentUser] = useState([]);
-  const [cards, addCards] = useState([]);
+  const [currentUser, setCurrentUser] = useState({});
+  const [cards, setCards] = useState({});
 
     function handleEditAvatarClick() {
-      setEditAvatarPopupOpen(true);
+      setIsEditAvatarPopupOpen(true);
     }
     function handleEditProfileClick() {
       setEditProfilePopupOpen(true);
@@ -29,17 +29,18 @@ function App() {
       setAddPlacePopupOpen(true);
     }
     function closeAllPopups() {
-      setEditAvatarPopupOpen(false);
+      setIsEditAvatarPopupOpen(false);
       setEditProfilePopupOpen(false);
       setAddPlacePopupOpen(false);
       setSelectedCard(null);
     }
     function handleCardClick(card) {
-      const data = [];
+      const data = {};
       data.link = card.link;
       data.name = card.name;
       data.isOpen = true;
       setSelectedCard(data);
+      //setSelectedCard(card);
     }
 
     useEffect(() => {
@@ -78,15 +79,15 @@ function App() {
       const isLiked = card.likes.some(i => i._id === currentUser._id);
 
       api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-          addCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-      });
+          setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+      })
+      .catch((err) => {console.log(`Ошибка загрузки данных: ${err}`)});
     }
 
   function handleCardDelete(card) {
-    console.log(card._id);
       api.removeCard(card._id)
       .then(() => {
-          addCards(cards.filter(item => !(item._id === card._id)));
+          setCards((cards) => {cards.filter(item => !(item._id === card._id))});
       })
       .catch((err) => {
           console.log(`Ошибка удаления каточки:: ${err}`);
@@ -96,7 +97,7 @@ function App() {
   function handleAddPlaceSubmit(newCard) {
     api.addNewCard(newCard)
     .then((newCard) => {
-      addCards([newCard, ...cards]);
+      setCards([newCard, ...cards]);
       closeAllPopups();
     })
     .catch((err) => {
@@ -107,7 +108,7 @@ function App() {
   useEffect(() => {
       api.getCards()
       .then((gCards) => {
-          addCards(gCards);
+          setCards(gCards);
       })
       .catch((err) => {
           console.log(`Ошибка загрузки данных: ${err}`);
