@@ -17,7 +17,7 @@ function App() {
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
-  const [cards, setCards] = useState({});
+  const [cards, setCards] = useState([]);
 
     function handleEditAvatarClick() {
       setIsEditAvatarPopupOpen(true);
@@ -87,7 +87,7 @@ function App() {
   function handleCardDelete(card) {
       api.removeCard(card._id)
       .then(() => {
-          setCards((cards) => {cards.filter(item => !(item._id === card._id))});
+          setCards((cards) => {return cards.filter(item => !(item._id === card._id))});
       })
       .catch((err) => {
           console.log(`Ошибка удаления каточки:: ${err}`);

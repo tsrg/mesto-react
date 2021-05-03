@@ -8,7 +8,6 @@ const apiSettings = {
 	updateAvatarUrl: 'https://mesto.nomoreparties.co/v1/cohort-21/users/me/avatar'
   };
 
-//import apiSettings from './constants'
 
 const handleOriginalResponse = (res) => {
 	if (!res.ok) {
@@ -76,30 +75,7 @@ class Api {
 			.then(handleOriginalResponse)
 	}
 
-	/*
 	changeLikeCardStatus(cardId, isLiked) {
-		if (isLiked) {
-			return fetch(`${this.apiSettings.cardsLikeUrl}/${cardId}`, {
-				method: "PUT",
-				headers: {
-					authorization: this.apiSettings.token,
-				},
-			})
-				.then(handleOriginalResponse)
-		}
-		else {
-			return fetch(`${this.apiSettings.cardsLikeUrl}/${cardId}`, {
-				method: "DELETE",
-				headers: {
-					authorization: this.apiSettings.token,
-				},
-			})
-				.then(handleOriginalResponse)
-		}
-	}*/
-
-	changeLikeCardStatus(cardId, isLiked) {
-		const method = isLiked ? 'DELETE' : 'PUT';
 			return fetch(`${this.apiSettings.cardsLikeUrl}/${cardId}`, {
 				method: `${isLiked ? "PUT" : "DELETE"}`,
 				headers: {
@@ -107,26 +83,6 @@ class Api {
 				},
 			})
 				.then(handleOriginalResponse)
-	}
-
-	addLike(cardId) {
-		return fetch(`${this.apiSettings.cardsLikeUrl}/${cardId}`, {
-			method: "PUT",
-			headers: {
-				authorization: this.apiSettings.token,
-			},
-		})
-			.then(handleOriginalResponse)
-	}
-
-	removeLike(cardId) {
-		return fetch(`${this.apiSettings.cardsLikeUrl}/${cardId}`, {
-			method: "DELETE",
-			headers: {
-				authorization: this.apiSettings.token,
-			},
-		})
-			.then(handleOriginalResponse)
 	}
 
 	updateAvatar(url) {
